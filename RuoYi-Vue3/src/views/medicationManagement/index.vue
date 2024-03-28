@@ -36,7 +36,7 @@
       </el-table-column>
     </el-table>
   </el-card>
-<!--  <EditModel ref="editModal"></EditModel>-->
+  <EditModel ref="editModal"></EditModel>
 </template>
 <script setup lang="ts">
 import {reactive, ref} from "vue";
