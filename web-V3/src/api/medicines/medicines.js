@@ -7,3 +7,10 @@ export function addMedicines(data) {
         data: data
     })
 }
+export function getMedicines(data) {
+    return request({
+        url: '/medicines/getMedicines',
+        method: 'post',
+        data: data
+    })
+}

@@ -41,13 +41,15 @@
 <script setup lang="ts">
 import {reactive, ref} from "vue";
 import EditModel from "@/views/medicationManagement/EditModal.vue";
-
+import {getMedicines} from '@/api/medicines/medicines'
 const editModal = ref();
 const state = reactive({
-  name: ''
+  name: '',
+  pageNum: 1,
+  pageSize: 5
 })
 const onSearch = () => {
-
+  getMedicines(state)
 }
 const reset = () => {
   state.name = ''
