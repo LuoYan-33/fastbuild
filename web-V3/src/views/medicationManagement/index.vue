@@ -4,7 +4,7 @@
       <el-row>
         <el-col :span="6">
           <el-form-item label="药品名称">
-            <el-input :allow-clear="true" v-model:value="state.name"></el-input>
+            <el-input :allow-clear="true" v-model="state.name"></el-input>
           </el-form-item>
         </el-col>
         <el-col :span="18">
@@ -23,7 +23,7 @@
         <el-button @click="onExport">导出</el-button>
       </div>
     </template>
-    <el-table>
+    <el-table :data="data">
       <el-table-column prop="name" label="药品名称" width="180" />
       <el-table-column prop="manufacturers" label="生产商" width="180" />
       <el-table-column prop="specification" label="规格" />
@@ -35,6 +35,15 @@
         </template>
       </el-table-column>
     </el-table>
+    <el-pagination
+        v-model:current-page="state.pageNum"
+        v-model:page-size="state.pageSize"
+        :page-sizes="[100, 200, 300, 400]"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total"
+        @size-change="onSearch"
+        @current-change="handleCurrentChange"
+    />
   </el-card>
   <EditModel ref="editModal"></EditModel>
 </template>
@@ -48,8 +57,17 @@ const state = reactive({
   pageNum: 1,
   pageSize: 5
 })
+const total=ref(0)
 const onSearch = () => {
-  getMedicines(state)
+  getMedicines(state).then(res=>{
+    data.value = res.rows
+    total.value = res.total
+  })
+}
+const data = ref([])
+const handleCurrentChange = (val)=>{
+  state.pageNum=val
+  onSearch()
 }
 const reset = () => {
   state.name = ''
