@@ -54,6 +54,12 @@ public class TableSupport
         pageDomain.setReasonable(ServletUtils.getParameterToBool(REASONABLE));
         return pageDomain;
     }
+
+    /**
+     * 封装分页对象post
+     * @param data
+     * @return
+     */
     public static PageDomain getPageDomain(BaseEntity data)
     {
         PageDomain pageDomain = new PageDomain();
