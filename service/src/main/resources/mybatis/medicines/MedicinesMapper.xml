@@ -22,5 +22,16 @@
         insert into medicines(id,name,manufacturers,price,specification,stock,warning,create_by,create_time,update_by,update_time,remark)
         values(uuid(),#{name},#{manufacturers},#{price},#{specification},#{stock},#{warning},#{createBy},sysdate(),#{updateBy},sysdate(),#{remark})
     </insert>
+    <select id="getMedicines" resultType="com.ruoyi.project.medicines.domain.Medicines">
+        select * from medicines
+        <where>
+            <if test="id != null and id != ''">
+                id=#{id}
+            </if>
+            <if test="name != null and name != ''">
+                name like concat('%',#{name},'%')
+            </if>
+        </where>
+    </select>
 
 </mapper> 

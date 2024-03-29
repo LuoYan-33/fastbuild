@@ -7,12 +7,14 @@ import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
 
 /**
  * Entity基类
  * 
  * @author ruoyi
  */
+
 public class BaseEntity implements Serializable
 {
     private static final long serialVersionUID = 1L;
@@ -37,7 +39,13 @@ public class BaseEntity implements Serializable
 
     /** 备注 */
     private String remark;
-
+    /**
+     * 分页
+     */
+    @Getter
+    private int pageNum;
+    @Getter
+    private int pageSize;
     /** 请求参数 */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<String, Object> params;
