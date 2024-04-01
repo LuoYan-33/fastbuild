@@ -23,7 +23,7 @@
         <el-button @click="onExport">导出</el-button>
       </div>
     </template>
-    <el-table :data="data">
+    <el-table :data="data" style="height: 100%">
       <el-table-column prop="name" label="药品名称" width="180" />
       <el-table-column prop="manufacturers" label="生产商" width="180" />
       <el-table-column prop="specification" label="规格" />
@@ -35,28 +35,25 @@
         </template>
       </el-table-column>
     </el-table>
-    <el-pagination
-        style="margin-top: 10px;float: right"
-        v-model:current-page="state.pageNum"
-        v-model:page-size="state.pageSize"
-        :page-sizes="[100, 200, 300, 400]"
-        layout="total, sizes, prev, pager, next, jumper"
+    <pagination
+        v-show="total > 0"
         :total="total"
-        @size-change="onSearch"
-        @current-change="handleCurrentChange"
+        v-model:page="state.pageNum"
+        v-model:limit="state.pageSize"
+        @pagination="onSearch"
     />
   </el-card>
   <EditModel ref="editModal"></EditModel>
 </template>
 <script setup lang="ts">
-import {reactive, ref} from "vue";
+import {onMounted, reactive, ref} from "vue";
 import EditModel from "@/views/medicationManagement/EditModal.vue";
 import {getMedicines} from '@/api/medicines/medicines'
 const editModal = ref();
 const state = reactive({
   name: '',
   pageNum: 1,
-  pageSize: 5
+  pageSize: 10
 })
 const total=ref(0)
 const onSearch = () => {
@@ -66,10 +63,6 @@ const onSearch = () => {
   })
 }
 const data = ref([])
-const handleCurrentChange = (val)=>{
-  state.pageNum=val
-  onSearch()
-}
 const reset = () => {
   state.name = ''
 }
@@ -79,7 +72,9 @@ const onExport = () => {
 const onCreate = () => {
   editModal.value.openCreate()
 }
-
+onMounted(()=>{
+  onSearch()
+})
 </script>
 
 <style scoped>
