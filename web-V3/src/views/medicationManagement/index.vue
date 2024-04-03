@@ -43,7 +43,7 @@
         @pagination="onSearch"
     />
   </el-card>
-  <EditModel ref="editModal"></EditModel>
+  <EditModel @submit="onSearch" ref="editModal"></EditModel>
 </template>
 <script setup lang="ts">
 import {onMounted, reactive, ref} from "vue";

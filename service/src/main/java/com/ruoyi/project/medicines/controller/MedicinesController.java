@@ -1,5 +1,7 @@
 package com.ruoyi.project.medicines.controller;
 
+import com.ruoyi.framework.aspectj.lang.annotation.Log;
+import com.ruoyi.framework.aspectj.lang.enums.BusinessType;
 import com.ruoyi.framework.web.controller.BaseController;
 import com.ruoyi.framework.web.domain.AjaxResult;
 import com.ruoyi.framework.web.page.TableDataInfo;
@@ -15,6 +17,7 @@ import java.util.List;
 public class MedicinesController extends BaseController {
     @Autowired
     private MedicinesService medicinesService;
+    @Log(title = "药品管理",businessType = BusinessType.INSERT)
     @PostMapping("/addMedicines")
     public AjaxResult addMedicines(@RequestBody Medicines medicines) {
         int i = medicinesService.addMedicines(medicines);
