@@ -68,11 +68,13 @@ const onSubmit = () => {
   myForm.value.validate().then(() => {
     addMedicines(state).then(() => {
       ElMessage.success('添加成功')
+      emits('submit')
       onCancel()
     }).catch((err) => {
     })
   })
 }
+const emits=defineEmits(['submit'])
 defineExpose({
   openCreate,
   openEdit
