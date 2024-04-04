@@ -8,7 +8,7 @@
         <id property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="manufacturers" column="manufacturers"/>
-        <result property="specification" column="specification"/>
+        <result property="unit" column="unit"/>
         <result property="price" column="price"/>
         <result property="stock" column="stock"/>
         <result property="warning" column="warning"/>
@@ -19,9 +19,16 @@
         <result property="remark" column="remark"/>
     </resultMap>
     <insert id="addMedicines">
-        insert into medicines(id,name,manufacturers,price,specification,stock,warning,create_by,create_time,update_by,update_time,remark)
-        values(uuid(),#{name},#{manufacturers},#{price},#{specification},#{stock},#{warning},#{createBy},sysdate(),#{updateBy},sysdate(),#{remark})
+        insert into medicines(id,name,manufacturers,price,unit,stock,warning,create_by,create_time,update_by,update_time,remark)
+        values(uuid(),#{name},#{manufacturers},#{price},#{unit},#{stock},#{warning},#{createBy},sysdate(),#{updateBy},sysdate(),#{remark})
     </insert>
+    <update id="updateMedicines"></update>
+    <delete id="deleteMedicines" parameterType="list">
+        delete from medicines where id in
+        <foreach item="id" index="index" collection="list" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
     <select id="getMedicines" resultType="com.ruoyi.project.medicines.domain.Medicines">
         select * from medicines
         <where>
@@ -33,5 +40,4 @@
             </if>
         </where>
     </select>
-
 </mapper> 

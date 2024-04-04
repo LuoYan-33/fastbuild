@@ -26,12 +26,13 @@
     <el-table :data="data" style="height: 100%">
       <el-table-column prop="name" label="药品名称" width="180" />
       <el-table-column prop="manufacturers" label="生产商" width="180" />
-      <el-table-column prop="specification" label="规格" />
+      <el-table-column prop="unit" label="单位" />
       <el-table-column prop="stock" label="库存" />
       <el-table-column prop="warning" label="库存预警" />
-      <el-table-column fixed="right" label="操作" width="120">
-        <template #default>
-          <el-button link type="primary" size="small">修改</el-button>
+      <el-table-column align="center" fixed="right" label="操作" width="180">
+        <template #default="scope">
+          <el-button icon="Edit" link type="primary" size="small">修改</el-button>
+          <el-button icon="Delete" @click="onDeleteMedicines(scope.row.id)" link type="primary" size="small">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -48,7 +49,8 @@
 <script setup lang="ts">
 import {onMounted, reactive, ref} from "vue";
 import EditModel from "@/views/medicationManagement/EditModal.vue";
-import {getMedicines} from '@/api/medicines/medicines'
+import {getMedicines,deleteMedicines} from '@/api/medicines/medicines'
+import {ElMessage} from "element-plus";
 const editModal = ref();
 const state = reactive({
   name: '',
@@ -71,6 +73,16 @@ const onExport = () => {
 }
 const onCreate = () => {
   editModal.value.openCreate()
+}
+const onDeleteMedicines = (id) => {
+  const deleteIds=[]
+ if (id){
+   deleteIds.push(id)
+ }
+  deleteMedicines(deleteIds).then(()=>{
+    ElMessage.success('删除成功')
+    onSearch()
+  })
 }
 onMounted(()=>{
   onSearch()

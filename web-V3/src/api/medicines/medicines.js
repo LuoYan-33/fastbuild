@@ -14,3 +14,10 @@ export function getMedicines(data) {
         data: data
     })
 }
+export function deleteMedicines(data) {
+    return request({
+        url: '/medicines/deleteMedicines',
+        method: 'post',
+        data: data
+    })
+}

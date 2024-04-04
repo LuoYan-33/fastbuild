@@ -12,4 +12,6 @@ import java.util.List;
 public interface MedicinesMapper {
     int addMedicines(Medicines medicines);
     List<Medicines> getMedicines(Medicines medicines);
+    int updateMedicines(Medicines medicines);
+    int deleteMedicines(List<String> ids);
 }

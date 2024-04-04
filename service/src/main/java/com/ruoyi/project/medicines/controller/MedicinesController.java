@@ -12,24 +12,64 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * 药品管理控制器
+ */
 @RestController
 @RequestMapping("/medicines")
 public class MedicinesController extends BaseController {
+    /**
+     * 注入药品服务层
+     */
     @Autowired
     private MedicinesService medicinesService;
-    @Log(title = "药品管理",businessType = BusinessType.INSERT)
+
+    /**
+     * 添加药品
+     *
+     * @param medicines 药品信息
+     * @return 添加结果
+     */
+    @Log(title = "药品管理", businessType = BusinessType.INSERT)
     @PostMapping("/addMedicines")
-    public AjaxResult addMedicines(@RequestBody Medicines medicines) {
-        int i = medicinesService.addMedicines(medicines);
-        if (i <= 0) {
-            return AjaxResult.error("添加失败");
-        }
-        return AjaxResult.success("添加成功");
+    public void addMedicines(@RequestBody Medicines medicines) {
+         medicinesService.addMedicines(medicines);
     }
-    @PostMapping ("/getMedicines")
-    public TableDataInfo updateMedicines(@RequestBody Medicines medicines) {
+    /**
+     * 查询药品信息
+     *
+     * @param medicines 查询条件
+     * @return 查询结果
+     */
+    @PostMapping("/getMedicines")
+    public TableDataInfo getMedicines(@RequestBody Medicines medicines) {
         startPage(medicines);
         List<Medicines> i = medicinesService.getMedicines(medicines);
         return getDataTable(i);
     }
+
+    /**
+     * 更新药品信息
+     *
+     * @param medicines 药品信息
+     * @return 更新结果
+     */
+    @Log(title = "药品管理", businessType = BusinessType.UPDATE)
+    @PostMapping("/updateMedicines")
+    public void updateMedicines(@RequestBody Medicines medicines) {
+         medicinesService.updateMedicines(medicines);
+    }
+
+    /**
+     * 删除药品信息
+     *
+     * @param ids 药品ID列表
+     * @return 删除结果
+     */
+    @Log(title = "药品管理", businessType = BusinessType.DELETE)
+    @PostMapping("/deleteMedicines")
+    public void deleteMedicines(@RequestBody List<String> ids) {
+         medicinesService.deleteMedicines(ids);
+    }
 }
+

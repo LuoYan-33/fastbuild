@@ -20,11 +20,11 @@ public class Medicines extends BaseEntity {
   @NotBlank(message = "生产厂家不能为空")
   @Excel(name = "生产厂家")
   private String manufacturers;
-  @NotBlank(message = "规格（单位）不能为空")
-  @Excel(name = "规格（单位）")
-  private double specification;
+  @NotBlank(message = "单位不能为空")
+  @Excel(name = "单位")
+  private char unit;
   @NotNull(message = "单价不能为空")
-  @Excel(name = "单价/10g")
+  @Excel(name = "单价")
   private double price;
   @Excel(name = "库存")
   @NotNull(message = "库存不能为空")

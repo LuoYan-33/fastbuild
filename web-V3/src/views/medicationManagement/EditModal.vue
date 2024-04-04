@@ -7,8 +7,11 @@
       <el-form-item label="生产商" prop="manufacturers">
         <el-input v-model="state.manufacturers"></el-input>
       </el-form-item>
-      <el-form-item label="规格" prop="specification" >
-        <el-input-number v-model="state.specification"></el-input-number>(g)
+      <el-form-item label="单位" prop="unit" >
+        <el-select v-model="state.unit" placeholder="请选择单位">
+          <el-option v-for="(item,key) in UNIT" :key="key" :label="item.label" :value="item.value">
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="单价" prop="specification">
         <el-input-number v-model="state.price"></el-input-number>
@@ -32,13 +35,14 @@
 import {reactive, ref} from "vue";
 import {addMedicines} from '@/api/medicines/medicines'
 import {ElMessage} from "element-plus";
+import {UNIT} from "@/common/constant";
 const myForm = ref();
 const title = ref();
 const visible = ref(false);
 const state = reactive({
   name: '',
   manufacturers: '',
-  specification: '',
+  unit: '',
   price: 0,
   stock: 0,
   warning: 0,
@@ -46,7 +50,7 @@ const state = reactive({
 const rules = ref({
   name: [{required: true, message: '请输入药品名称', trigger: 'blur'}],
   manufacturers: [{required: true, message: '请输入生产商', trigger: 'blur'}],
-  specification: [{required: true, message: '请输入规格', trigger: 'blur'}],
+  unit: [{required: true, message: '请选择单位', trigger: 'blur'}],
   stock: [{required: true, message: '请输入库存', trigger: 'blur'}],
   warning: [{required: true, message: '请输入库存预警', trigger: 'blur'}],
 })
