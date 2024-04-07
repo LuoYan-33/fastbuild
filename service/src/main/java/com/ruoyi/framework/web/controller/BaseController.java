@@ -58,15 +58,6 @@ public class BaseController
     }
 
     /**
-     * post
-     * @param data
-     */
-    protected void startPage(BaseEntity data)
-    {
-        PageUtils.startPage(data);
-    }
-
-    /**
      * 设置请求排序数据
      */
     protected void startOrderBy()

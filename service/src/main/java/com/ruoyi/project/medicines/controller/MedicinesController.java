@@ -32,8 +32,8 @@ public class MedicinesController extends BaseController {
      */
     @Log(title = "药品管理", businessType = BusinessType.INSERT)
     @PostMapping("/addMedicines")
-    public void addMedicines(@RequestBody Medicines medicines) {
-         medicinesService.addMedicines(medicines);
+    public AjaxResult addMedicines(@RequestBody Medicines medicines) {
+        return medicinesService.addMedicines(medicines);
     }
     /**
      * 查询药品信息
@@ -41,11 +41,13 @@ public class MedicinesController extends BaseController {
      * @param medicines 查询条件
      * @return 查询结果
      */
-    @PostMapping("/getMedicines")
-    public TableDataInfo getMedicines(@RequestBody Medicines medicines) {
-        startPage(medicines);
+    @GetMapping("/getMedicines")
+    public TableDataInfo getMedicines(Medicines medicines) {
+      startPage();
         List<Medicines> i = medicinesService.getMedicines(medicines);
+//        clearPage();
         return getDataTable(i);
+
     }
 
     /**
@@ -56,8 +58,8 @@ public class MedicinesController extends BaseController {
      */
     @Log(title = "药品管理", businessType = BusinessType.UPDATE)
     @PostMapping("/updateMedicines")
-    public void updateMedicines(@RequestBody Medicines medicines) {
-         medicinesService.updateMedicines(medicines);
+    public AjaxResult updateMedicines(@RequestBody Medicines medicines) {
+        return medicinesService.updateMedicines(medicines);
     }
 
     /**

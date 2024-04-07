@@ -14,4 +14,5 @@ public interface MedicinesMapper {
     List<Medicines> getMedicines(Medicines medicines);
     int updateMedicines(Medicines medicines);
     int deleteMedicines(List<String> ids);
+    int checkSame(Medicines medicines);
 }

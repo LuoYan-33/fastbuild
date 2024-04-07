@@ -10,8 +10,8 @@ export function addMedicines(data) {
 export function getMedicines(data) {
     return request({
         url: '/medicines/getMedicines',
-        method: 'post',
-        data: data
+        method: 'get',
+        params: data
     })
 }
 export function deleteMedicines(data) {

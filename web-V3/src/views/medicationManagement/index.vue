@@ -55,7 +55,7 @@ const editModal = ref();
 const state = reactive({
   name: '',
   pageNum: 1,
-  pageSize: 10
+  pageSize: 5
 })
 const total=ref(0)
 const onSearch = () => {

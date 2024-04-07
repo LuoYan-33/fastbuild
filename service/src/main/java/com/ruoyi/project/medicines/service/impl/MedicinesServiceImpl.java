@@ -27,6 +27,10 @@ public class MedicinesServiceImpl implements MedicinesService {
     @Override
     @Transactional
     public AjaxResult addMedicines(Medicines medicines) {
+        int count = medicinesMapper.checkSame(medicines);
+        if (count > 0) {
+            return AjaxResult.warn("药品已存在");
+        }
         int i1 = medicinesMapper.addMedicines(medicines);
         if (i1 > 0) {
             return AjaxResult.success("添加成功");
@@ -52,7 +56,15 @@ public class MedicinesServiceImpl implements MedicinesService {
      */
     @Override
     public AjaxResult updateMedicines(Medicines medicines) {
-        return null;
+        int count = medicinesMapper.checkSame(medicines);
+        if (count > 0) {
+            return AjaxResult.warn("药品已存在");
+        }
+        int m = medicinesMapper.updateMedicines(medicines);
+        if (m > 0) {
+            return AjaxResult.success("修改成功");
+        }
+        return AjaxResult.error("修改失败");
     }
 
     /**

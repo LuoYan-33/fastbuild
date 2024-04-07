@@ -39,13 +39,7 @@ public class BaseEntity implements Serializable
 
     /** 备注 */
     private String remark;
-    /**
-     * 分页
-     */
-    @Getter
-    private int pageNum;
-    @Getter
-    private int pageSize;
+
     /** 请求参数 */
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     private Map<String, Object> params;

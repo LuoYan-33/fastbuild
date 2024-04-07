@@ -32,4 +32,6 @@ public class Medicines extends BaseEntity {
   @NotNull(message = "库存预警不能为空")
   @Excel(name = "库存预警")
   private double warning;
+  @Excel(name = "备注")
+  private String remark;
 }

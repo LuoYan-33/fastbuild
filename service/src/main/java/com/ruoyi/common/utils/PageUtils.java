@@ -25,15 +25,6 @@ public class PageUtils extends PageHelper
         Boolean reasonable = pageDomain.getReasonable();
         PageHelper.startPage(pageNum, pageSize, orderBy).setReasonable(reasonable);
     }
-    public static void startPage(BaseEntity data)
-    {
-        PageDomain pageDomain = TableSupport.buildPageRequest(data);
-        Integer pageNum = pageDomain.getPageNum();
-        Integer pageSize = pageDomain.getPageSize();
-        String orderBy = SqlUtil.escapeOrderBySql(pageDomain.getOrderBy());
-        Boolean reasonable = pageDomain.getReasonable();
-        PageHelper.startPage(pageNum, pageSize, orderBy).setReasonable(reasonable);
-    }
 
     /**
      * 清理分页的线程变量

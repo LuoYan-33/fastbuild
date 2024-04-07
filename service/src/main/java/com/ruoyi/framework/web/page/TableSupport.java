@@ -54,28 +54,8 @@ public class TableSupport
         pageDomain.setReasonable(ServletUtils.getParameterToBool(REASONABLE));
         return pageDomain;
     }
-
-    /**
-     * 封装分页对象post
-     * @param data
-     * @return
-     */
-    public static PageDomain getPageDomain(BaseEntity data)
-    {
-        PageDomain pageDomain = new PageDomain();
-        pageDomain.setPageNum(Convert.toInt(data.getPageNum(), 1));
-        pageDomain.setPageSize(Convert.toInt(data.getPageSize(), 10));
-        pageDomain.setOrderByColumn(ServletUtils.getParameter(ORDER_BY_COLUMN));
-        pageDomain.setIsAsc(ServletUtils.getParameter(IS_ASC));
-        pageDomain.setReasonable(ServletUtils.getParameterToBool(REASONABLE));
-        return pageDomain;
-    }
     public static PageDomain buildPageRequest()
     {
         return getPageDomain();
-    }
-    public static PageDomain buildPageRequest(BaseEntity data)
-    {
-        return getPageDomain(data);
     }
 }
