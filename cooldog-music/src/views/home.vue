@@ -1,31 +1,27 @@
 <script setup lang="ts">
-import { Search,ArrowRight } from '@element-plus/icons-vue'
-import {ref} from "vue";
-const refList = ref([
-  {
-    url: 'https://imgessl.kugou.com/custom/150/20230812/20230812111558822994.jpg',
-    title:'“是我们相遇的意义”次国神曲SVT'
-  },
-  {
-    url: 'https://imgessl.kugou.com/custom/150/20221015/20221015110004416998.jpg',
-    title: '“是我们相遇的意义”次国神曲SVT'
-  },
-  {
-    url: 'https://imgessl.kugou.com/custom/150/20240204/20240204071357970915.jpg',
-    title: '“是我们相遇的意义”次国神曲SVT'
-  },
-  {
-    url: 'https://imgessl.kugou.com/custom/150/20230901/20230901001735267199.jpg',
-    title: '“是我们相遇的意义”次国神曲SVT'
-  }
-])
+import {Search, ArrowRight} from '@element-plus/icons-vue'
+import {onMounted, ref} from "vue";
+import axios from "axios";
+
+const getData = () => {
+  axios({
+    method: 'get',
+    url: '/api/home_4picture'
+  }).then(res => {
+    refList.value=res.data
+  })
+}
+const refList = ref([])
+onMounted(()=>{
+  getData()
+})
 </script>
 
 <template>
   <div>
     <el-carousel height="500px">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <img width="100%" height="100%" src="https://imgessl.kugou.com/commendpic/20221012/20221012151556309954.jpg" />
+      <el-carousel-item v-for="item in 4">
+        <img width="100%" height="100%" src="https://imgessl.kugou.com/commendpic/20221012/20221012151556309954.jpg"/>
       </el-carousel-item>
     </el-carousel>
     <div class="download">
@@ -51,7 +47,10 @@ const refList = ref([
               </el-col>
               <el-col :span="6">
                 <div class="align-rightBottom" style="width: 100%;margin-top: 10px;">
-                  更多<el-icon :size="18"><ArrowRight /></el-icon>
+                  更多
+                  <el-icon :size="18">
+                    <ArrowRight/>
+                  </el-icon>
                 </div>
               </el-col>
               <el-col :span="13">
@@ -69,7 +68,7 @@ const refList = ref([
                           :src="item.url"
                           style="width: 130px;"
                       />
-                      <p>{{item.title}}</p>
+                      <p>{{ item.title }}</p>
                     </el-col>
                   </el-row>
                 </div>
@@ -87,11 +86,14 @@ const refList = ref([
               </el-col>
               <el-col :span="6">
                 <div class="align-rightBottom" style="width: 100%;margin-top: 10px;">
-                  更多<el-icon :size="18"><ArrowRight /></el-icon>
+                  更多
+                  <el-icon :size="18">
+                    <ArrowRight/>
+                  </el-icon>
                 </div>
               </el-col>
               <el-col :span="8">
-               <img width="110px" src="https://www.kugou.com/common/images/rank_i1.png">
+                <img width="110px" src="https://www.kugou.com/common/images/rank_i1.png">
               </el-col>
               <el-col :span="16">
                 <div class="base-div" style="justify-content: flex-start;height: 100%;">
@@ -111,10 +113,10 @@ const refList = ref([
   </div>
 </template>
 <style>
-.download{
+.download {
   -webkit-text-size-adjust: none;
   -webkit-user-select: none;
-  font-family: \5FAE\8F6F\96C5\9ED1,simsun,sans-serif;
+  font-family: \5FAE\8F6F\96C5\9ED1, simsun, sans-serif;
   margin: 0;
   padding: 0;
   z-index: 20;
@@ -130,16 +132,18 @@ const refList = ref([
   backdrop-filter: saturate(180%) blur(6px);
   background: rgba(255, 255, 255, 0.5);
 }
-.mid-btn{
+
+.mid-btn {
   cursor: pointer;
   color: #000;
   width: 260px;
   font-weight: 400;
 }
-h1{
+
+h1 {
   -webkit-text-size-adjust: none;
   -webkit-user-select: none;
-  font-family: \5FAE\8F6F\96C5\9ED1,simsun,sans-serif;
+  font-family: \5FAE\8F6F\96C5\9ED1, simsun, sans-serif;
   margin: 0;
   padding: 0;
   font-size: 26px;
@@ -147,23 +151,29 @@ h1{
   color: #000000;
   height: 60px;
 }
-.el-card__header{
+
+.el-card__header {
   height: 60px !important;
   padding: 0 !important;
 }
-.el-card__body{
+
+.el-card__body {
   padding: 0 !important;
 }
-.el-main{
+
+.el-main {
   line-height: normal !important;
 }
-.el-card{
+
+.el-card {
   border: none;
 }
-img{
+
+img {
   border-radius: 10px;
 }
-p{
+
+p {
   font-size: 14px;
   font-weight: 400;
   color: #000000;
