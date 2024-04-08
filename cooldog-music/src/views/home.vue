@@ -2,7 +2,7 @@
 import {Search, ArrowRight} from '@element-plus/icons-vue'
 import {onMounted, ref} from "vue";
 import axios from "axios";
-
+import router from "@/router";
 const getData = () => {
   axios({
     method: 'get',
@@ -10,8 +10,36 @@ const getData = () => {
   }).then(res => {
     refList.value=res.data
   })
+  axios({
+    method: 'get',
+    url: '/api/soaring'
+  }).then(res => {
+    soaring.value=res.data.data
+  })
+  axios({
+    method: 'get',
+    url: '/api/top'
+  }).then(res => {
+    top.value=res.data.data
+  })
+  axios({
+    method: 'get',
+    url: '/api/hot'
+  }).then(res => {
+    hot.value=res.data.data
+  })
+  axios({
+    method: 'get',
+    url: '/api/recommend'
+  }).then(res => {
+    recommend.value=res.data.data
+  })
 }
+const soaring =ref([])
+const top =ref([])
+const hot = ref([])
 const refList = ref([])
+const recommend =ref([])
 onMounted(()=>{
   getData()
 })
@@ -98,17 +126,66 @@ onMounted(()=>{
               <el-col :span="16">
                 <div class="base-div" style="justify-content: flex-start;height: 100%;">
                   <ol>
-                    <li></li>
-                    <li></li>
-                    <li></li>
+                    <li v-for="(item,index) in soaring" :key="index">{{item}}</li>
+                  </ol>
+                </div>
+              </el-col>
+              <el-col :span="8">
+                <img width="110px" src="https://www.kugou.com/common/images/rank_i2.png">
+              </el-col>
+              <el-col :span="16">
+                <div class="base-div" style="justify-content: flex-start;height: 100%;">
+                  <ol>
+                    <li v-for="(item,index) in top" :key="index">{{item}}</li>
+                  </ol>
+                </div>
+              </el-col>
+              <el-col :span="8">
+                <img width="110px" src="https://www.kugou.com/common/images/rank_i3.png">
+              </el-col>
+              <el-col :span="16">
+                <div class="base-div" style="justify-content: flex-start;height: 100%;">
+                  <ol>
+                    <li v-for="(item,index) in hot" :key="index">{{item}}</li>
                   </ol>
                 </div>
               </el-col>
             </el-row>
           </el-card>
         </div>
-
       </div>
+    </div>
+    <div class="base-div">
+      <el-card :body-style="{padding: '10px !important'}" shadow="never">
+        <template #header>
+          <div style="width: 100%">
+            <div style="width: 100%;display: flex;justify-content: space-between;align-items: flex-end;flex-wrap: wrap">
+              <h1 style="margin-top: 20px;">推荐内容</h1>
+            </div>
+          </div>
+        </template>
+        <div style="width: 1000px;display:flex;flex-wrap: wrap">
+          <el-card style="width: 140px;margin: 5px;cursor: pointer" v-for="(item,index) in recommend" :key="index" :body-style="{width: '140px', height: '50px',display: 'flex',justifyContent: 'center',alignItems: 'center'}">
+            <el-link>{{  item }}</el-link>
+          </el-card>
+        </div>
+      </el-card>
+    </div>
+    <div class="base-div">
+      <el-card :body-style="{padding: '10px !important'}" shadow="never">
+        <template #header>
+          <div style="width: 100%">
+            <div style="width: 100%;display: flex;justify-content: space-between;align-items: flex-end;flex-wrap: wrap">
+              <h1 style="margin-top: 20px;">合作链接</h1>
+            </div>
+          </div>
+        </template>
+        <div style="width: 1000px;display:flex;flex-wrap: wrap">
+          <el-card style="width: 140px;margin: 5px;cursor: pointer" v-for="(item,index) in recommend" :key="index" :body-style="{width: '140px', height: '50px',display: 'flex',justifyContent: 'center',alignItems: 'center'}">
+            <el-link>{{  item }}</el-link>
+          </el-card>
+        </div>
+      </el-card>
     </div>
   </div>
 </template>
@@ -186,5 +263,8 @@ p {
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
+}
+li,img{
+  cursor: pointer;
 }
 </style>
