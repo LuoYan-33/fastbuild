@@ -1,5 +1,24 @@
 <script setup lang="ts">
 import { Search,ArrowRight } from '@element-plus/icons-vue'
+import {ref} from "vue";
+const refList = ref([
+  {
+    url: 'https://imgessl.kugou.com/custom/150/20230812/20230812111558822994.jpg',
+    title:'“是我们相遇的意义”次国神曲SVT'
+  },
+  {
+    url: 'https://imgessl.kugou.com/custom/150/20221015/20221015110004416998.jpg',
+    title: '“是我们相遇的意义”次国神曲SVT'
+  },
+  {
+    url: 'https://imgessl.kugou.com/custom/150/20240204/20240204071357970915.jpg',
+    title: '“是我们相遇的意义”次国神曲SVT'
+  },
+  {
+    url: 'https://imgessl.kugou.com/custom/150/20230901/20230901001735267199.jpg',
+    title: '“是我们相遇的意义”次国神曲SVT'
+  }
+])
 </script>
 
 <template>
@@ -31,15 +50,29 @@ import { Search,ArrowRight } from '@element-plus/icons-vue'
               <el-col :span="12">
               </el-col>
               <el-col :span="6">
-                <div class="align-rightBottom" style="width: 100%;">
+                <div class="align-rightBottom" style="width: 100%;margin-top: 10px;">
                   更多<el-icon :size="18"><ArrowRight /></el-icon>
                 </div>
               </el-col>
-              <el-col :span="8">
+              <el-col :span="13">
                 <img
-                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                    style="width: 100%"
+                    src="https://imgessl.kugou.com/custom/480/20221121/20221121235623989334.jpg"
+                    style="width: 320px"
                 />
+                <p style="width: 100%;text-align: left;padding-left: 20px">MC DEAR JANE 张天赋</p>
+              </el-col>
+              <el-col :span="11">
+                <div style="width: 100%;">
+                  <el-row>
+                    <el-col v-for="(item,index) in refList" :key="index" :span="12">
+                      <img
+                          :src="item.url"
+                          style="width: 130px;"
+                      />
+                      <p>{{item.title}}</p>
+                    </el-col>
+                  </el-row>
+                </div>
               </el-col>
             </el-row>
           </el-card>
@@ -53,15 +86,21 @@ import { Search,ArrowRight } from '@element-plus/icons-vue'
                 </div>
               </el-col>
               <el-col :span="6">
-                <div class="align-rightBottom" style="width: 100%;">
+                <div class="align-rightBottom" style="width: 100%;margin-top: 10px;">
                   更多<el-icon :size="18"><ArrowRight /></el-icon>
                 </div>
               </el-col>
               <el-col :span="8">
-                <img
-                    src="https://shadow.elemecdn.com/app/element/hamburger.9cf7b091-55e9-11e9-a976-7f4d0b07eef6.png"
-                    style="width: 100%"
-                />
+               <img width="110px" src="https://www.kugou.com/common/images/rank_i1.png">
+              </el-col>
+              <el-col :span="16">
+                <div class="base-div" style="justify-content: flex-start;height: 100%;">
+                  <ol>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                  </ol>
+                </div>
               </el-col>
             </el-row>
           </el-card>
@@ -112,10 +151,30 @@ h1{
   height: 60px !important;
   padding: 0 !important;
 }
+.el-card__body{
+  padding: 0 !important;
+}
 .el-main{
   line-height: normal !important;
 }
 .el-card{
   border: none;
+}
+img{
+  border-radius: 10px;
+}
+p{
+  font-size: 14px;
+  font-weight: 400;
+  color: #000000;
+  display: block;
+  width: 130px;
+  word-break: break-all !important;
+  overflow: hidden;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 </style>
