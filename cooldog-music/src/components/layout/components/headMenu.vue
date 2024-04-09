@@ -7,12 +7,13 @@ const selectMenu = (key: string, keyPath: string[]) => {
   activeIndex.value=key
   console.log(activeIndex.value)
 }
+const menus=routes.filter(item=>!item.isHide)
 </script>
 
 <template>
   <div class="headMenu">
     <el-menu :default-active="activeIndex" :active-text-color="'#fff'" :collapse-transition="false" mode="horizontal" :show-timeout="0" :hide-timeout="0" @select="selectMenu">
-      <el-menu-item @click="router.push({path: item.path})" v-for="item in routes" :class="{selected: activeIndex===item.path}" :index="item.path"><a>{{item.title}}</a></el-menu-item>
+      <el-menu-item @click="router.push({path: item.path})" v-for="item in menus" :class="{selected: activeIndex===item.path}" :index="item.path"><a>{{item.title}}</a></el-menu-item>
       <el-menu-item index="5"><a>下载酷狗</a></el-menu-item>
       <el-menu-item index="6"><a>商务合作</a></el-menu-item>
     </el-menu>

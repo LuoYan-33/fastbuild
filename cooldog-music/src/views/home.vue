@@ -126,7 +126,7 @@ onMounted(()=>{
               <el-col :span="16">
                 <div class="base-div" style="justify-content: flex-start;height: 100%;">
                   <ol>
-                    <li v-for="(item,index) in soaring" :key="index">{{item}}</li>
+                    <li v-for="(item,index) in soaring" @click="router.push({path:`/music-info/${item}`})" :key="index">{{item}}</li>
                   </ol>
                 </div>
               </el-col>
