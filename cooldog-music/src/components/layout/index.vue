@@ -4,9 +4,10 @@ import headMenu from "@/components/layout/components/headMenu.vue";
 </script>
 
 <template>
-  <div>
-    <top></top>
-    <el-container>
+  <div style="position: relative">
+    <el-container style="position: relative">
+      <top style="z-index: 99;position: fixed;top: 0;order: 1;"></top>
+      <img style="position:absolute;top: -60px;z-index: 98;" src="https://static.ixiaochuan.cn/planck-web/67e2de54815e12ab8bab.png">
       <el-header>
         <template #default>
           <headMenu></headMenu>

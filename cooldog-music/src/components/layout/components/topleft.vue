@@ -11,7 +11,6 @@ const onSearch = () => {
 
 <template>
   <div>
-    <img style="width: 146px;height: 38px;margin-right: 40px;" src="@/components/icons/kugou_white.png">
     <el-input v-model="searchText" :prefix-icon="Search" class="search" @keydown.enter="onSearch"></el-input>
   </div>
 </template>

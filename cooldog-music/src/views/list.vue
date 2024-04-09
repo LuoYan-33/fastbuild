@@ -34,7 +34,7 @@
 </style>
 <script setup lang="ts">
 import {onMounted, ref} from "vue";
-import axios from "@/server/axios";
+import axios from "@/server/axios.js";
 const selectMusic = () => {
   axios({
     method: 'get',

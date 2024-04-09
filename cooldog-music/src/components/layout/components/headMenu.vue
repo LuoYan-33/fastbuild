@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {routes} from '@/router/routes'
-import router from "@/router";
+import {routes} from '@/router/routes.js'
+import router from "@/router/index.js";
 const activeIndex=ref('/home')
 const selectMenu = (key: string, keyPath: string[]) => {
   activeIndex.value=key

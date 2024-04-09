@@ -2,7 +2,7 @@
 import {Search, ArrowRight} from '@element-plus/icons-vue'
 import {onMounted, ref} from "vue";
 import axios from "axios";
-import router from "@/router";
+import router from "@/router/index.js";
 const getData = () => {
   axios({
     method: 'get',
